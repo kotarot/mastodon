@@ -43,3 +43,6 @@ redis
 # Ignore vim files
 *~
 *.swp
+
+# Ignore Let's encrypt files
+certbot.log
