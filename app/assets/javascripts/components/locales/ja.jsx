@@ -85,7 +85,7 @@ const ja = {
   "onboarding.page_three.profile": "「プロフィールを編集」から、あなたの自己紹介や表示名を変更できます。またそこでは他の設定ができます。",
   "onboarding.page_four.home": "「ホーム」タイムラインではあなたがフォローしている人の投稿を表示します。",
   "onboarding.page_four.notifications": "「通知」ではあなたへの他の人からの関わりを表示します。",
-  "onboarding.page_five.public_timelines": "連合タイムラインでは{domain}の人がフォローしているMastodon全体での公開投稿を表示します。同じくローカルタイムラインでは{domain}のみの公開投稿を表示します。",
+  "onboarding.page_five.public_timelines": "連合タイムラインでは{domain}の人がフォローしているMastodon全体での公開投稿を表示します。同じく研究室タイムラインでは{domain}のみの公開投稿を表示します。",
   "onboarding.page_six.almost_done": "以上です。",
   "onboarding.page_six.admin": "あなたのインスタンスの管理者は{admin}です。",
   "onboarding.page_six.read_guidelines": "{guidelines}を読むことを忘れないようにしてください。",
