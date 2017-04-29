@@ -388,6 +388,10 @@
   font-weight: 400;
   overflow: hidden;
   white-space: pre-wrap;
+/* ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
+  overflow-x: auto;
+  overflow-y: hidden;
+/* ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
 
   .emojione {
     width: 18px;
@@ -438,6 +442,13 @@
     }
   }
 }
+
+/* ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
+.MathJax_Display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
 
 a.status__content__spoiler-link {
   display: inline-block;

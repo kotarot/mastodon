@@ -6,6 +6,57 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
+// ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
+const loadScript = require('load-script');
+// const MathJax = require('react-mathjax');
+// const reactStringReplace = require('react-string-replace')
+
+function mapAlternate(array, fn1, fn2, thisArg) {
+    var fn = fn1, output = [];
+    for (var i=0; i<array.length; i++){
+        output[i] = fn.call(thisArg, array[i], i, array);
+        fn = fn === fn1 ? fn2 : fn1;
+    }
+    return output;
+}
+
+const componentToString = c => {
+    let aDom = document.createElement('span');
+    var finished = false;
+    ReactDOM.render(c, aDom, () => {
+        finished = true;
+    });
+    while(finished == false) { }
+
+    const s = aDom.outerHTML;
+    console.log([aDom,s]);
+    result = s;
+
+    return s;
+};
+
+const mathjaxify = str => {
+    var s = mapAlternate(str.split(/\$\$/g),
+        x => x,
+        x => componentToString(<MathJax.Context><MathJax.Node>{x}</MathJax.Node></MathJax.Context>)).join("");
+    s = mapAlternate(s.split(/\$/g),
+        x => x,
+        x => componentToString(<MathJax.Context><MathJax.Node inline>{x}</MathJax.Node></MathJax.Context>)).join("");
+    s = s.replace(/\\\((.*?)\\\)/g,
+        componentToString(<MathJax.Context><MathJax.Node inline>{"$1"}</MathJax.Node></MathJax.Context>))
+        .replace(/\\\[(.*?)\\\]/g,
+        componentToString(<MathJax.Context><MathJax.Node>{"$1"}</MathJax.Node></MathJax.Context>));
+        console.log(s);
+    return s;
+};
+
+const isMathjaxifyable = str => {
+    return [ /\$\$(.*?)\$\$/g, /\$(.*?)\$/g, /\\\((.*?)\\\)/g, /\\\[(.*?)\\\]/g]
+        .map( r => str.match(r))
+        .reduce((prev, elem) => prev || elem, false);
+}
+// ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
+
 class StatusContent extends React.PureComponent {
 
   constructor (props, context) {
@@ -42,6 +93,44 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
       }
     }
+// ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe',
+        (err, script) => {
+            if (err) {
+            } else {
+                const options = {
+                    tex2jax: {
+                        inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+                    },
+                    skipStartupTypeset: true,
+                    showProcessingMessages: false,
+                    messageStyle: "none",
+                    showMathMenu: false,
+                    showMathMenuMSIE: false,
+                    "SVG": {
+                        font:
+                            "TeX"
+                            // "STIX-Web"
+                            // "Asana-Math"
+                            // "Neo-Euler"
+                            // "Gyre-Pagella"
+                            // "Gyre-Termes"
+                            // "Latin-Modern"
+                    },
+                    "HTML-CSS": {
+                        availableFonts: ["TeX"],
+                        preferredFont: "TeX",
+                        webFont: "TeX"
+                    }
+                };
+                MathJax.Hub.Config(options);
+                const elements = [...document.querySelectorAll('.status__content')];
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, elements]);
+                // MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
+                // console.log(elements);
+            }
+        });
+// ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
   }
 
   onMentionClick (mention, e) {
