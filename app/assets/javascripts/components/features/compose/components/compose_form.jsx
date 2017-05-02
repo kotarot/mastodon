@@ -1,4 +1,7 @@
 import CharacterCounter from './character_counter';
+// ==BEGIN== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74
+import LivePreview from './live_preview';
+// ==END== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74
 import Button from '../../../components/button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
@@ -177,6 +180,11 @@ class ComposeForm extends React.PureComponent {
             <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "_").length > 500 || (text.length !==0 && text.trim().length === 0)} block /></div>
           </div>
         </div>
+{/* ==BEGIN== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74 */}
+        <div className='compose-form__live-preview'>
+          <LivePreview text={text} />
+        </div>
+{/* ==END== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74 */}
       </div>
     );
   }

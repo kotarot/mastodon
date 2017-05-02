@@ -326,6 +326,15 @@
   padding-top: 10px;
 }
 
+/* ==BEGIN== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74 */
+.compose-form__live-preview {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  background: $color1;
+}
+/* ==END== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74 */
+
 .emojione {
   display: inline-block;
   font-size: inherit;
@@ -388,10 +397,10 @@
   font-weight: 400;
   overflow: hidden;
   white-space: pre-wrap;
-/* ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
+/* ==BEGIN== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73 */
   overflow-x: auto;
   overflow-y: hidden;
-/* ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
+/* ==END== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73 */
 
   .emojione {
     width: 18px;
@@ -443,12 +452,12 @@
   }
 }
 
-/* ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
+/* ==BEGIN== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73 */
 .MathJax_Display {
   overflow-x: auto;
   overflow-y: hidden;
 }
-/* ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/stylesheets/components.scss */
+/* ==END== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73 */
 
 a.status__content__spoiler-link {
   display: inline-block;

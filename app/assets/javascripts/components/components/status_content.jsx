@@ -6,8 +6,9 @@ import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 
-// ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
-const loadScript = require('load-script');
+// ==BEGIN== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73
+// ==BEGIN== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74
+const loadScriptOnce = require('load-script-once');
 // const MathJax = require('react-mathjax');
 // const reactStringReplace = require('react-string-replace')
 
@@ -55,7 +56,8 @@ const isMathjaxifyable = str => {
         .map( r => str.match(r))
         .reduce((prev, elem) => prev || elem, false);
 }
-// ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
+// ==END== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73
+// ==END== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74
 
 class StatusContent extends React.PureComponent {
 
@@ -93,14 +95,18 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
       }
     }
-// ==BEGIN== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe',
+// ==BEGIN== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73
+// ==BEGIN== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74
+    loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML,Safe',
         (err, script) => {
             if (err) {
             } else {
                 const options = {
                     tex2jax: {
                         inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+                    },
+                    TeX: {
+                        extensions: ["AMScd.js"]
                     },
                     skipStartupTypeset: true,
                     showProcessingMessages: false,
@@ -124,13 +130,11 @@ class StatusContent extends React.PureComponent {
                     }
                 };
                 MathJax.Hub.Config(options);
-                const elements = [...document.querySelectorAll('.status__content')];
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub, elements]);
-                // MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
-                // console.log(elements);
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
             }
         });
-// ==END== From https://github.com/Nyoho/mastodon/blob/bfe41bf7ce020ea665d8d1e271a01b011a014c73/app/assets/javascripts/components/components/status_content.jsx
+// ==END== 2017-04-29 From Nyoho/mastodon @bfe41bf7ce020ea665d8d1e271a01b011a014c73
+// ==END== 2017-05-02 From Nyoho/mastodon @c6036293e77d3d11e5a2bada238051cdedcd9e74
   }
 
   onMentionClick (mention, e) {
